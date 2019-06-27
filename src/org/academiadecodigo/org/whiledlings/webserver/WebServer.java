@@ -18,10 +18,10 @@ public class WebServer {
         WebServer webServer = new WebServer(8081);
         try {
             serverSocket = new ServerSocket(port);
-            ExecutorService cachedPool = Executors.newCachedThreadPool();
+            ExecutorService fixedPool = Executors.newFixedThreadPool(1500);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                cachedPool.submit(new RequestHandler(clientSocket));
+                fixedPool.submit(new RequestHandler(clientSocket));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -35,7 +35,7 @@ public class RequestHandler implements Runnable {
                 return;
             }
             if (strings.length > 1) {
-                getRequested(strings[1]);
+                getRequest(strings[1]);
             } else {
                 DataOutputStream write = new DataOutputStream(clientSocket.getOutputStream());
                 write.writeBytes(Headers.BADREQUEST.getHeaderContent());
@@ -44,7 +44,7 @@ public class RequestHandler implements Runnable {
         }
     }
 
-    private void getRequested(String str) {
+    private void getRequest(String str) {
         if (str.equals("/")) {
             sendPage("/index.html", Headers.TEXT);
             return;
